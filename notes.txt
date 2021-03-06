@@ -1,0 +1,47 @@
+ [1]: from  api_basic.models import Aricle
+
+In [2]: from  api_basic.serializers  import AricleSerializers
+
+In [3]: from rest_framework.renderers import  JSONRenderer
+
+In [4]: from  rest_framework.parsers import JSONParser
+
+In [5]: a = Aricle(title='test title ',author='aman',email='alalwan
+   ...: i0807@gmail.com' )
+
+In [6]: a.save()
+
+In [7]: a = Aricle(title='test title 2',author='aman1',email='alalw
+   ...: ani0807@gmail.com' )
+
+In [8]: a.save()
+
+In [9]: serializer= AricleSerializers(a)
+
+In [10]: serializer.data
+Out[10]: {'title': 'test title 2', 'author': 'aman1', 'email': 'alalwani0807@gmail.com', 'date': '2021-02-27T21:48:46.028004Z'}
+
+In [11]: content = JSONRenderer.render(serializer.data)
+-------------------------------------------------------------------
+TypeError                         Traceback (most recent call last)
+<ipython-input-11-7a435d13ba3b> in <module>
+----> 1 content = JSONRenderer.render(serializer.data)
+
+TypeError: render() missing 1 required positional argument: 'data'
+
+In [12]: content = JSONRenderer().render(serializer.data)
+
+In [13]: content
+Out[13]: b'{"title":"test title 2","author":"aman1","email":"alalwani0807@gmail.com","date":"2021-02-27T21:48:46.028004Z"}'
+
+In [14]: serializer= serializer= AricleSerializers(Aricle.objects.a
+    ...: ll(),many=True)
+
+
+serializer= AricleSerializers()
+
+In [5]: print(repr(serializer))
+AricleSerializers():
+    id = IntegerField(label='ID', read_only=True)
+    title = CharField(max_length=100)
+    author = CharField(max_length=100)
